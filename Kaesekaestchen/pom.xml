@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.stefan_oltmann</groupId>
     <artifactId>kaesekaestchen</artifactId>
-    <version>0.4.2</version>
+    <version>0.5</version>
     <packaging>apk</packaging>
     <name>Käsekästchen</name>
 

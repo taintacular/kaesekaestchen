@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="de.stefan_oltmann.kaesekaestchen" android:versionName="0.4.2" android:versionCode="6">
+      package="de.stefan_oltmann.kaesekaestchen" android:versionName="0.5" android:versionCode="7">
       
     <!-- Unterstützung für alle Display-Größen angeben.
          Erst ab API Version 4 wird z.B. das HTC Wildfire unterstützt.
