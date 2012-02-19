@@ -34,6 +34,8 @@ import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageView;
+import android.widget.TextView;
 import de.stefan_oltmann.kaesekaestchen.model.Kaestchen;
 import de.stefan_oltmann.kaesekaestchen.model.Spieler;
 import de.stefan_oltmann.kaesekaestchen.model.SpielerManager;
@@ -108,7 +110,22 @@ public class SpielActivity extends Activity {
 
             while (!isGameOver()) {
 
-                Spieler spieler = spielerManager.getAktuellerSpieler();
+                final Spieler spieler = spielerManager.getAktuellerSpieler();
+
+                /*
+                 * Anzeige welcher Spieler dran ist und wieviele Punkt dieser
+                 * schon hat.
+                 */
+                mHandler.post(new Runnable() {
+                    public void run() {
+
+                        ImageView imageView = (ImageView) findViewById(R.id.aktuellerSpielerSymbol);
+                        imageView.setImageBitmap(spieler.getSymbol());
+
+                        TextView textView = (TextView) findViewById(R.id.punkteAnzeige);
+                        textView.setText(String.valueOf(ermittlePunktzahl(spieler)));
+                    }
+                });
 
                 Strich eingabe = null;
 
