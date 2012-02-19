@@ -26,6 +26,7 @@ package de.stefan_oltmann.kaesekaestchen;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -77,6 +78,10 @@ public class SpielfeldView extends View implements OnTouchListener {
      */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+
+        if (spielfeld == null)
+            return;
+
         int maxBreite = (w - PADDING * 2) / spielfeld.getBreiteInKaestchen();
         int maxHoehe = (h - PADDING * 2) / spielfeld.getHoeheInKaestchen();
         KAESTCHEN_SEITENLAENGE = Math.min(maxBreite, maxHoehe);
@@ -89,10 +94,13 @@ public class SpielfeldView extends View implements OnTouchListener {
 
         /*
          * Wurde das Spielfeld noch nicht initalisiert, dieses nicht zeichnen.
-         * Ansonsten würde das zu einer NullPointer-Exception führen.
+         * Ansonsten würde das zu einer NullPointer-Exception führen. Dies wird
+         * auch benötigt, um korrekt im GUI-Editor dargestellt zu werden.
          */
-        if (spielfeld == null)
+        if (spielfeld == null) {
+            canvas.drawRect(0, 0, getWidth(), getHeight(), new Paint());
             return;
+        }
 
         for (Kaestchen kaestchen : spielfeld.getKaestchenListe())
             kaestchen.onDraw(canvas);
