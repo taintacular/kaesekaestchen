@@ -77,8 +77,8 @@ public class SpielfeldView extends View implements OnTouchListener {
      */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        int maxBreite = (w - PADDING * 2) / spielfeld.getBreite();
-        int maxHoehe = (h - PADDING * 2) / spielfeld.getHoehe();
+        int maxBreite = (w - PADDING * 2) / spielfeld.getBreiteInKaestchen();
+        int maxHoehe = (h - PADDING * 2) / spielfeld.getHoeheInKaestchen();
         KAESTCHEN_SEITENLAENGE = Math.min(maxBreite, maxHoehe);
     }
 

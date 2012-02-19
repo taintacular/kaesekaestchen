@@ -41,7 +41,7 @@ public class Spielfeld {
     private int             breiteInKaestchen;
     private int             hoeheInKaestchen;
 
-    private List<Kaestchen> kaestchenListe      = new ArrayList<Kaestchen>();
+    private Kaestchen[][]   kaestchenArray;
 
     /**
      * Aus Performance-Gründen wird eine zweite Liste geführt, damit die
@@ -59,14 +59,21 @@ public class Spielfeld {
     private Spielfeld(int breiteInKaestchen, int hoeheInKaestchen) {
         this.breiteInKaestchen = breiteInKaestchen;
         this.hoeheInKaestchen = hoeheInKaestchen;
+
+        this.kaestchenArray = new Kaestchen[breiteInKaestchen][hoeheInKaestchen];
     }
 
-    /**
-     * Gibt eine unmodifizierbare Liste von Kästchen zurück. Die Liste ist
-     * deshalb nicht veränderbar, da direktes Exponieren einer Liste ist.
-     */
     public List<Kaestchen> getKaestchenListe() {
-        return Collections.unmodifiableList(kaestchenListe);
+
+        List<Kaestchen> liste = new ArrayList<Kaestchen>();
+
+        for (int rasterX = 0; rasterX < breiteInKaestchen; rasterX++) {
+            for (int rasterY = 0; rasterY < hoeheInKaestchen; rasterY++) {
+                liste.add(kaestchenArray[rasterX][rasterY]);
+            }
+        }
+
+        return Collections.unmodifiableList(liste);
     }
 
     public List<Kaestchen> getOffeneKaestchenListe() {
@@ -78,7 +85,7 @@ public class Spielfeld {
     }
 
     private void addKaestchen(Kaestchen kaestchen) {
-        kaestchenListe.add(kaestchen);
+        kaestchenArray[kaestchen.getRasterX()][kaestchen.getRasterY()] = kaestchen;
         offeneKaestchen.add(kaestchen);
     }
 
@@ -88,18 +95,17 @@ public class Spielfeld {
 
     public Kaestchen getKaestchen(int rasterX, int rasterY) {
 
-        for (Kaestchen kaestchen : kaestchenListe)
-            if (kaestchen.getRasterX() == rasterX && kaestchen.getRasterY() == rasterY)
-                return kaestchen;
+        if (rasterX >= breiteInKaestchen || rasterY >= hoeheInKaestchen)
+            return null;
 
-        return null;
+        return kaestchenArray[rasterX][rasterY];
     }
 
-    public int getBreite() {
+    public int getBreiteInKaestchen() {
         return breiteInKaestchen;
     }
 
-    public int getHoehe() {
+    public int getHoeheInKaestchen() {
         return hoeheInKaestchen;
     }
 
