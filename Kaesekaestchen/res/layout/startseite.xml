@@ -27,26 +27,20 @@
         <TableRow>
             <ImageView
                 android:src="@drawable/spieler_symbol_kaese" />
-            <TextView
-                android:text="@string/spieler_1_name"
-                android:layout_gravity="center_vertical"
-                style="@style/SpielerNamen" />
             <Spinner
                 android:id="@+id/spieler_typ_1_spinner"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dip"
                 android:entries="@array/spielerTypen" />
         </TableRow>
         
         <TableRow>
             <ImageView
                 android:src="@drawable/spieler_symbol_maus" />
-            <TextView
-                android:text="@string/spieler_2_name"
-                android:layout_gravity="center_vertical"
-                style="@style/SpielerNamen" />
             <Spinner
                 android:id="@+id/spieler_typ_2_spinner"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dip"
                 android:entries="@array/spielerTypen" />
         </TableRow>
     </TableLayout>
